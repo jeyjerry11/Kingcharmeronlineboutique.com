@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>King Charmer | Elite Luxury Portal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --gold: #d4af37;
+            --gold-glow: rgba(212, 175, 55, 0.2);
+            --dark-void: #0a0a0a;
+            --panel-bg: #121212;
+            --input-bg: #1a1a1a;
+            --text-pure: #ffffff;
+            --text-dim: #999999;
+            --whatsapp-green: #25d366;
+        }
+
+        body {
+            background-color: var(--dark-void);
+            color: var(--text-pure);
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Luxury Header Interface */
+        header {
+            text-align: center;
+            padding: 50px 20px;
+            background: linear-gradient(180deg, #000000 0%, var(--dark-void) 100%);
+            border-bottom: 1px solid #1c1c1c;
+        }
+
+        h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 3.5rem;
+            letter-spacing: 10px;
+            background: linear-gradient(135deg, #ffffff 30%, #a6a6a6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px var(--gold-glow);
+        }
+
+        .sub-tag {
+            font-family: 'Cinzel', serif;
+            font-size: 0.9rem;
+            color: var(--gold);
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            margin-top: 8px;
+        }
+
+        nav {
+            margin-top: 30px;
+        }
+
+        .nav-link {
+            color: var(--text-dim);
+            text-decoration: none;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin: 0 20px;
+            padding-bottom: 5px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--text-pure);
+            border-bottom: 2px solid var(--gold);
+            text-shadow: 0 0 10px rgba(255,255,255,0.5);
+        }
+
+        /* Layout Framework */
+        .luxury-container {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 60px 40px;
+        }
+
+        .catalog-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            border-bottom: 1px solid #1c1c1c;
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+
+        .catalog-header h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.8rem;
+            letter-spacing: 3px;
+        }
+
+        .catalog-header p {
+            color: var(--text-dim);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Grid Adaptive Layout */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        /* Premium Card Design Architecture */
+        .product-card {
+            background: var(--panel-bg);
+            border: 1px solid #1a1a1a;
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--gold);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 20px var(--gold-glow);
+        }
+
+        /* Media Showcase Box */
+        .image-box {
+            width: 100%;
+            height: 360px;
+            background: #0d0d0d;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .image-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .media-placeholder {
+            font-family: 'Cinzel', serif;
+            font-size: 2.5rem;
+            color: #222;
+            letter-spacing: 4px;
+        }
+
+        /* Floating Like Button Engine */
+        .like-trigger {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            border: 1px solid #222;
+            color: var(--text-pure);
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 5;
+        }
+
+        .like-trigger:hover {
+            background: var(--text-pure);
+            color: #000;
+            transform: scale(1.1);
+        }
+
+        .like-trigger.liked i {
+            color: #ff3838;
+        }
+
+        /* Information & Button Configurations */
+        .details-box {
+            padding: 25px;
+        }
+
+        .item-title {
+            font-size: 1.05rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .stars-rating {
+            color: var(--gold);
+            font-size: 0.8rem;
+            margin-bottom: 15px;
+        }
+
+        .stars-rating span {
+            color: var(--text-dim);
+            margin-left: 6px;
+        }
+
+        .pricing {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text-pure);
+            margin-bottom: 20px;
+        }
+
+        /* Strategic Purchase Call-To-Action Layout */
+        .action-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .btn-buy-now {
+            background: var(--text-pure);
+            color: #000;
+            border: none;
+            font-weight: 700;
+        }
+
+        .btn-pod {
+            background: transparent;
+            color: var(--text-pure);
+            border: 1px solid #333;
+            font-weight: 500;
+        }
+
+        .btn-buy-now, .btn-pod {
+            padding: 12px 10px;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .btn-buy-now:hover {
+            background: var(--gold);
+            color: #000;
+            box-shadow: 0 0 15px var(--gold-glow);
+        }
+
+        .btn-pod:hover {
+            border-color: var(--text-pure);
+            background: rgba(255,255,255,0.05);
+        }
+
+        /* IMMERSIVE GLASSMANDEL MODAL OVERLAY */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+            z-index: 1000;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-box {
+            background: #141414;
+            border: 1px solid #262626;
+            width: 100%;
+            max-width: 500px;
+            border-radius: 12px;
+            padding: 40px;
+            position: relative;
+            transform: scale(0.9);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.8), 0 0 50px rgba(214,175,55,0.1);
+        }
+
+        .modal-overlay.active .modal-box {
+            transform: scale(1);
+        }
+
+        .close-modal-btn {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            background: none;
+            border: none;
+            color: var(--text-dim);
+            font-size: 2rem;
+            cursor: pointer;
+        }
+
+        .close-modal-btn:hover {
+            color: var(--text-pure);
+        }
+
+        #modal-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            letter-spacing: 2px;
+            color: var(--gold);
+            margin-bottom: 5px;
+        }
+
+        .modal-subtitle {
+            color: var(--text-dim);
+            font-size: 0.9rem;
+            margin-bottom: 25px;
+        }
+
+        /* Bank Account Placement Panel */
+        .account-info-box {
+            background: #0d0d0d;
+            border-left: 3px solid var(--gold);
+            padding: 20px;
+            border-radius: 4px;
+            margin-bottom: 25px;
+            font-size: 0.85rem;
+        }
+
+        .account-info-box h4 {
+            color: var(--gold);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .account-info-box p {
+            margin-bottom: 6px;
+        }
+
+        .support-phone {
+            color: var(--gold);
+            margin-top: 10px;
+        }
+
+        .badge-notice {
+            display: inline-block;
+            margin-top: 10px;
+            font-size: 0.7rem;
+            background: rgba(212, 175, 55, 0.1);
+            padding: 4px 8px;
+            border-radius: 2px;
+            color: #ffcc00;
+        }
+
+        /* Form Inputs */
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-dim);
+            margin-bottom: 8px;
+        }
+
+        .input-group input, .input-group textarea {
+            width: 100%;
+            background: var(--input-bg);
+            border: 1px solid #262626;
+            border-radius: 4px;
+            padding: 12px 15px;
+            color: var(--text-pure);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .input-group input:focus, .input-group textarea:focus {
+            outline: none;
+            border-color: var(--gold);
+        }
+
+        .action-submit-btn {
+            width: 100%;
+            background: var(--whatsapp-green);
+            color: #ffffff;
+            border: none;
+            padding: 15px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: opacity 0.3s ease;
+        }
+
+        .action-submit-btn:hover {
+            opacity: 0.9;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            color: #444;
+            font-size: 0.8rem;
+            border-top: 1px solid #111;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-wrapper">
+            <h1>KING CHARMER</h1>
+            <p class="sub-tag">The Royal Realm of Fashion</p>
+        </div>
+        <nav>
+            <a href="#" class="nav-link active">All Collections</a>
+            <a href="#" class="nav-link">Queen's Charm</a>
+            <a href="#" class="nav-link">Bespoke Suits</a>
+            <a href="#" class="nav-link">Streetwear</a>
+        </nav>
+    </header>
+
+    <main class="luxury-container">
+        <div class="catalog-header">
+            <h2>The 2026 Lookbook</h2>
+            <p><span id="item-count">0</span> Bespoke Concepts Available</p>
+        </div>
+
+        <div class="products-grid" id="products-grid"></div>
+    </main>
+
+    <div class="modal-overlay" id="checkout-modal">
+        <div class="modal-box">
+            <button class="close-modal-btn" onclick="closeModal()">&times;</button>
+            <h3 id="modal-title">Secure Checkout</h3>
+            <p class="modal-subtitle" id="modal-product-name">Product Name</p>
+
+            <div class="account-info-box" id="account-info-box">
+                <h4><i class="fa-solid fa-building-columns"></i> Official Settlement Channel</h4>
+                <p><strong>USDT:</strong> Please Copy Address Below Send Exact Amount</p>
+                <p><strong>USDT Wallet Trc20:</strong> TJxSacUakUqCfmUqHtekQWJwV5YbkPD6gY </p>
+                <p><strong>Other Payment Method Contact Us On:</strong> Tushup524@gmail.com.</p>
+                <p class="support-phone"><strong>Support Helpline:</strong> +2349036961116</p>
+                <span class="badge-notice">Transfer the exact amount before submitting to WhatsApp</span>
+            </div>
+
+            <form id="checkout-form" onsubmit="handleFormSubmit(event)">
+                <input type="hidden" id="submit-type">
+                
+                <div class="input-group">
+                    <label for="cust-name">Your Full Name</label>
+                    <input type="text" id="cust-name" placeholder="e.g., Alexander Morgan" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="cust-phone">Phone Number</label>
+                    <input type="tel" id="cust-phone" placeholder="e.g., +234..." required>
+                </div>
+
+                <div class="input-group">
+                    <label for="cust-address">Delivery Destination Address</label>
+                    <textarea id="cust-address" rows="3" placeholder="Street Name, Suite, City, State" required></textarea>
+                </div>
+
+                <button type="submit" class="action-submit-btn">
+                    Complete Order via WhatsApp <i class="fa-brands fa-whatsapp"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 King Charmer Industries. Built for Supreme Elegance.</p>
+    </footer>
+
+    <script>
+        // Configuration Panel
+        const WHATSAPP_NUMBER = "2347086312481"; // Replace with your exact smartphone WhatsApp number string
+        let selectedProduct = null;
+
+        // Complete 39-Item Master Array Architecture
+        const kingCharmerProducts = [
+            // --- ID 1 points to local image now ---
+            { id: 1, name: "King Charmer Onyx Hooded M/F", price: 185, stars: 5, img: "1.jpg" },
+            { id: 2, name: "Charcoal Cotton Graphic T-Shirt", price: 85, stars: 4, img: "11.jpg" },
+            { id: 3, name: "Tactical Grey Utility Vest", price: 210, stars: 5, img: "05.jpg" },
+            { id: 4, name: "Sleek Midnight Bomber Jacket", price: 320, stars: 5, img: "06.jpg" },
+            { id: 5, name: "High-Top Canvas Sneaker", price: 160, stars: 4, img: "04.jpg" },
+            { id: 6, name: "High-Top Suede Crest Sneaker", price: 195, stars: 5, img: "03.jpg" },
+            
+    { id: 7, name: "Embossed Denim Apron & Belt Set", price: 140, stars: 4, img: "02.jpg" },
+      { id: 8, name: " Apron & Belt Set", price: 140, stars: 4, img: "001.jpg" },
+    
+            { id: 9, name: "Tailored Folded Cargo Pants", price: 175, stars: 4, img: "01.jpg" },
+      { id: 10, name: "Cargo Pants", price: 175, stars: 4, img: "07.jpg" },
+      { id: 11, name: "2 in 1 Tailored Pants", price: 175, stars: 4, img: "08.jpg" },
+    
+            { id: 12, name: "King Charmer Limited Edition Dress", price: 850, stars: 5, img: "22.jpg" },
+              { id: 13, name: "Queem Limited Editon ", price: 1850, stars: 5, img: "12.jpg" },
+            { id: 14, name: "Limited Edition Wristwatch", price: 850, stars: 5, img: "012.jpg" },
+            
+    // --- QUEEN'S CHARM LINE ---
+            { id: 15, name: "Crimson Royal Crop Pullover", price: 125, stars: 5, img: "0011.jpg" },
+            { id: 16, name: "Pleated Noir & Velvet Accent Skirt", price: 110, stars: 4, img: "" },
+            { id: 17, name: "All-Over Brand Luxury Wrap Dress", price: 420, stars: 5, img: "222.jpg" },
+            { id: 18, name: "Sapphire All-Over Wrap Dress", price: 420, stars: 5, img: "22.jpg" },
+    { id: 19, name: "Head Warmer ", price: 850, stars: 5, img: "09.jpg" },
+            
+            { id: 20, name: "Emerald All-Over Wrap Dress", price: 420, stars: 4, img: "" },
+      { id: 21, name: "King Charmer Apron & Belt Set", price: 140, stars: 4, img: "10.jpg" },
+    { id: 22, name: "4 in 1 Limited Edition", price: 790, stars: 5, img: "3333.jpg" },
+            
+            { id: 23, name: "Crimson Ribbed Winged Crop Top", price: 75, stars: 5, img: "" },
+            { id: 24, name: "Aura Purple Script Crop Top", price: 75, stars: 5, img: "" },
+            { id: 25, name: "Liquid Gold Python Crop Top", price: 90, stars: 5, img: "" },
+            // --- TAILORED SUITS ---
+            { id: 26, name: "Burgundy Velvet Double Suit", price: 650, stars: 5, img: "" },
+            { id: 27, name: "Charcoal Pinstripe Custom Suit", price: 1200, stars: 5, img: "" },
+            { id: 28, name: "Classic Onyx Tuxedo Crest", price: 1450, stars: 5, img: "" },
+            { id: 29, name: "Deep Navy Silk Dress Shirt", price: 240, stars: 4, img: "" },
+            // --- UNIQUE FUTURE/AVANT-GARDE CONCEPTS ---
+            { id: 30, name: "Cyber-Glow Kinetic Windbreaker", price: 380, stars: 5, img: "" },
+            { id: 31, name: "Holographic Python Trench Coat", price: 680, stars: 5, img: "" },
+            { id: 32, name: "Liquid Metallic Mesh Jumpsuit", price: 510, stars: 4, img: "" },
+            { id: 33, name: "Solar-Reactive Pattern Kimono", price: 340, stars: 5, img: "" },
+            { id: 34, name: "Neoprene Urban Tech Poncho", price: 290, stars: 4, img: "0012.jpg" },
+            { id: 35, name: "Asymmetric Glass-Fiber Corset", price: 220, stars: 5, img: "" },
+            { id: 36, name: "10 in 1 Limited Brand Sale", price: 460, stars: 4, img: "10in1.jpg" },
+            { id: 37, name: "Monochrome Crest Leather Joggers", price: 390, stars: 5, img: "" },
+            { id: 38, name: "Split-Tone Crimson Denim Jacket", price: 280, stars: 5, img: "" },
+            { id: 39, name: "Obsidian Silk Lounge Robe", price: 310, stars: 4, img: "" },
+    
+            { id: 40, name: "Gold-Leaf Threaded Smoking Jacket", price: 790, stars: 5, img: "011.jpg" },
+            { id: 41, name: "Threaded Smoking Jacket", price: 790, stars: 5, img: "0101.jpg" },
+            
+    { id: 42, name: "Iridescent Cyber-Punk Cargo Kilt", price: 215, stars: 4, img: "" },
+            { id: 43, name: "Titanium Buckle Moto Leather Vest", price: 480, stars: 5, img: "" },
+            { id: 44, name: "Constellation Light-Weave Beanie", price: 65, stars: 4, img: "" },
+            { id: 45, name: "Platform Cyber Combat Boots", price: 340, stars: 5, img: "" },
+            { id: 46, name: "Chrono-Glow Smart-Glass Eyewear", price: 180, stars: 4, img: "" },
+            { id: 47, name: "Velvet Snake-Embossed Opera Cloak", price: 950, stars: 5, img: "" },
+            { id: 48, name: "Ethereal Winged Silk Evening Gown", price: 1850, stars: 5, img: "" }
+        ];
+
+        // Initial Rendering Engine Loop
+        function renderLuxuryCatalog() {
+            const grid = document.getElementById('products-grid');
+            document.getElementById('item-count').textContent = kingCharmerProducts.length;
+            grid.innerHTML = '';
+
+            kingCharmerProducts.forEach(product => {
+                let starsHTML = '';
+                for (let i = 0; i < 5; i++) {
+                    starsHTML += i < product.stars ? `<i class="fa-solid fa-star"></i>` : `<i class="fa-regular fa-star"></i>`;
+                }
+
+                const card = document.createElement('div');
+                card.className = 'product-card';
+                card.innerHTML = `
+                    <div class="image-box">
+                        <button class="like-trigger" onclick="toggleLike(this)">
+                            <i class="fa-regular fa-heart"></i>
+                        </button>
+                        ${product.img ? `<img src="${product.img}" alt="${product.name}">` : `<div class="media-placeholder">KC</div>`}
+                    </div>
+                    <div class="details-box">
+                        <div class="item-title">${product.name}</div>
+                        <div class="stars-rating">${starsHTML}<span>(${product.stars}.0)</span></div>
+                        <div class="pricing">$${product.price}</div>
+                        <div class="action-row">
+                            <button class="btn-buy-now" onclick="openCheckout(${product.id}, 'buynow')">Buy Now</button>
+                            <button class="btn-pod" onclick="openCheckout(${product.id}, 'pod')">P.O.D</button>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // Like Button Script Interface
+        function toggleLike(btn) {
+            btn.classList.toggle('liked');
+            const icon = btn.querySelector('i');
+            icon.className = btn.classList.contains('liked') ? 'fa-solid fa-heart' : 'fa-regular fa-heart';
+        }
+
+        // Open Overlay Controls
+        function openCheckout(productId, checkoutType) {
+            selectedProduct = kingCharmerProducts.find(p => p.id === productId);
+            const modal = document.getElementById('checkout-modal');
+            const accountBox = document.getElementById('account-info-box');
+            
+            document.getElementById('modal-product-name').textContent = `${selectedProduct.name} — $${selectedProduct.price}`;
+            document.getElementById('submit-type').value = checkoutType;
+
+            if (checkoutType === 'buynow') {
+                document.getElementById('modal-title').textContent = "Bespoke Direct Checkout";
+                accountBox.style.display = "block";
+            } else {
+                document.getElementById('modal-title').textContent = "Payment On Delivery Request";
+                accountBox.style.display = "none";
+            }
+
+            modal.classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('checkout-modal').classList.remove('active');
+            document.getElementById('checkout-form').reset();
+        }
+
+        // Processing WhatsApp Formulation Strings OnSubmit
+       function handleFormSubmit(event) {
+    event.preventDefault();
+
+    const name = document.getElementById('cust-name').value.trim();
+    const phone = document.getElementById('cust-phone').value.trim();
+    const address = document.getElementById('cust-address').value.trim();
+    const type = document.getElementById('submit-type').value;
+
+    let message = "";
+
+    if (type === 'buynow') {
+        message = `👑 *NEW KING CHARMER DIRECT ORDER* 👑\n\n` +
+                  `Hello, I have reviewed the settlement channel details and completed payment for:\n\n` +
+                  `🛍️ *Item:* ${selectedProduct.name}\n` +
+                  `💰 *Value:* $${selectedProduct.price}\n\n` +
+                  `📦 *Delivery Credentials:*\n` +
+                  `👤 *Client:* ${name}\n` +
+                  `📞 *Contact:* ${phone}\n` +
+                  `📍 *Address:* ${address}\n\n` +
+                  `Please confirm receipt and verify shipment details.`;
+    } else {
+        message = `👑 *KING CHARMER P.O.D REQUEST* 👑\n\n` +
+                  `Hey, I want to buy this clothing article and make payment on delivery:\n\n` +
+                  `🛍️ *Item:* ${selectedProduct.name}\n` +
+                  `💰 *Price Tag:* $${selectedProduct.price}\n\n` +
+                  `📍 *Deliver it here:* ${address}\n\n` +
+                  `👤 *Client:* ${name}\n` +
+                  `📞 *Contact:* ${phone}\n\n` +
+                  `Please secure my parcel reservation!`;
+    }
+
+    // Use the official WhatsApp wa.me short link format
+    // Ensure your WHATSAPP_NUMBER includes the country code (e.g., 234...)
+    const encryptedMessage = encodeURIComponent(message);
+    const whatsappURL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encryptedMessage}`;
+
+    // Redirect the browser window
+    window.location.href = whatsappURL;
+    
+    closeModal();
+       }
+
+        document.addEventListener('DOMContentLoaded', renderLuxuryCatalog);
+    </script>
+</body>
+</html>
